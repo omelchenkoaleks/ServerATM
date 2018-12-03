@@ -1,6 +1,7 @@
 package server;
 
-import strategy.*;
+import server.strategy.Default;
+import server.strategy.Strategy;
 
 import java.util.List;
 
@@ -13,12 +14,26 @@ public class Context {
 
     private Strategy getStrategy(String name) {
 
-        switch (name) {
-            case "GetBalance" : return new GetBalance();
-            case "CreateCard" : return new CreateCard();
-            case "PayAmount"  : return new PayAmount();
-            default           : return new Default();
+        try {
+
+            // Более лучший способ реализовать switch()
+            // - способ динамической загрузки указанного класса.
+
+            return (Strategy) Class
+                    .forName("server.strategy." + name)
+                    .newInstance();
+
+
+        } catch (Exception e) {
+            return new Default();
         }
+
+//        switch (name) {
+//            case "GetBalance" : return new GetBalance();
+//            case "CreateCard" : return new CreateCard();
+//            case "PayAmount"  : return new PayAmount();
+//            default           : return new Default();
+//        }
     }
 }
 
