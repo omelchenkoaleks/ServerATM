@@ -6,6 +6,6 @@ public class GetBalance implements Strategy {
 
     @Override
     public String execute(List<String> request) {
-        return null;
+        return "Balance 1000";
     }
 }

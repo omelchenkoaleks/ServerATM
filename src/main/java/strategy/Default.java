@@ -2,10 +2,10 @@ package strategy;
 
 import java.util.List;
 
-public class PayAmount implements Strategy {
+public class Default implements Strategy {
 
     @Override
     public String execute(List<String> request) {
-        return "Paid 200";
+        return "Error strategy not found";
     }
 }
