@@ -40,4 +40,25 @@ public class ContextTest {
         String actual = context.execute(request);
         assertEquals("Paid 200", actual);
     }
+
+    @Test
+    public void testCashIn() {
+        List<String> request = new ArrayList<String>();
+        request.add("CashIn");
+        request.add("100000");
+        request.add("350");
+        Context context = new Context();
+        String actual = context.execute(request);
+        assertEquals("Cash in 350", actual);
+    }
+
+    @Test
+    public void testBlockCard() {
+        List<String> request = new ArrayList<String>();
+        request.add("BlockCard");
+        request.add("100000");
+        Context context = new Context();
+        String actual = context.execute(request);
+        assertEquals("Blocked 100000", actual);
+    }
 }
