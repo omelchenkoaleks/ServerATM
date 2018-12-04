@@ -14,12 +14,15 @@ public class Context {
 
         Strategy strategy = getStrategy(request.get(1));
 
+        // здесь используется полиморфизм...
         return strategy.execute(visitor, request);
     }
 
     private Visitor getVisitor(String name) {
 
         try {
+
+
             return (Visitor) Class
                     .forName("server.visitor." + name)
                     .newInstance();
@@ -34,9 +37,6 @@ public class Context {
 
         try {
 
-            // Более лучший способ реализовать switch()
-            // - способ динамической загрузки указанного класса.
-
             return (Strategy) Class
                     .forName("server.strategy." + name)
                     .newInstance();
@@ -45,13 +45,6 @@ public class Context {
         } catch (Exception e) {
             return new Default();
         }
-
-//        switch (name) {
-//            case "GetBalance" : return new GetBalance();
-//            case "CreateCard" : return new CreateCard();
-//            case "PayAmount"  : return new PayAmount();
-//            default           : return new Default();
-//        }
     }
 }
 

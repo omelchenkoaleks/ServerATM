@@ -8,9 +8,12 @@ public class CreateCard implements Strategy {
 
     @Override
     public String execute(Visitor visitor, List<String> request) {
-        // Эта строчка вся суть шаблона Посетитель - полиморфизм используется -
+
+        // Эта строчка вся суть шаблона Посетитель
         // в результате будет б
-        if (visitor.visit(this))
+        if (!visitor.visit(this))
+            return "Error access denied";
+
         return "Created 100000";
     }
 }
