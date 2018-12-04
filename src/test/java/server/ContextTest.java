@@ -14,6 +14,7 @@ public class ContextTest {
     @Test
     public void testCreateCard() {
         List<String> request = new ArrayList<String>();
+        request.add("Shop");
         request.add("CreateCard");
         Context context = new Context();
         String actual = context.execute(request);
@@ -23,6 +24,7 @@ public class ContextTest {
     @Test
     public void testGetBalance() {
         List<String> request = new ArrayList<String>();
+        request.add("ATM1");
         request.add("GetBalance");
         request.add("100000");
         Context context = new Context();
@@ -33,6 +35,7 @@ public class ContextTest {
     @Test
     public void testPayAmount() {
         List<String> request = new ArrayList<String>();
+        request.add("ATM2");
         request.add("PayAmount");
         request.add("100000");
         request.add("200");
@@ -44,6 +47,7 @@ public class ContextTest {
     @Test
     public void testCashIn() {
         List<String> request = new ArrayList<String>();
+        request.add("Bank");
         request.add("CashIn");
         request.add("100000");
         request.add("350");

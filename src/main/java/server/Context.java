@@ -2,6 +2,7 @@ package server;
 
 import server.strategy.Default;
 import server.strategy.Strategy;
+import server.visitor.Visitor;
 
 import java.util.List;
 
@@ -9,8 +10,25 @@ public class Context {
 
     public String execute (List<String> request) {
 
-        return getStrategy(request.get(0)).execute(request);
+        Visitor visitor = getVisitor(request.get(0));
+
+        Strategy strategy = getStrategy(request.get(1));
+
+        return strategy.execute(visitor, request);
     }
+
+    private Visitor getVisitor(String name) {
+
+        try {
+            return (Visitor) Class
+                    .forName("server.visitor." + name)
+                    .newInstance();
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 
     private Strategy getStrategy(String name) {
 
